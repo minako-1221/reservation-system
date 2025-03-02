@@ -22,8 +22,8 @@ use App\Http\Controllers\ShopController;
 Route::get('/', [AuthController::class, 'index']);
 Route::get('/register', [AuthController::class, 'getRegister']);
 Route::post('/register', [AuthController::class, 'postRegister']);
-Route::get('/thanks', [AuthController::class, 'getThanks']);
-Route::get('/login', [AuthController::class, 'getLogin']);
+Route::get('/thanks', [AuthController::class, 'getThanks'])->name('thanks');
+Route::get('/login', [AuthController::class, 'getLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'postLogin']);
 
 Route::middleware('auth')->group(function () {

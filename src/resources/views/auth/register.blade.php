@@ -17,7 +17,7 @@
         </div>
         <div class="form__error">
             @error('name')
-            {{$message}}
+                {{$message}}
             @enderror
         </div>
         <div class="form-group">
@@ -26,16 +26,16 @@
         </div>
         <div class="form__error">
             @error('email')
-            {{$message}}
+                {{$message}}
             @enderror
         </div>
         <div class="form-group">
             <i class="icon password-icon"></i>
-            <input type="password" name="password" placeholder="Password" value="{{old('password')}}" />
+            <input type="password" name="password" placeholder="Password" />
         </div>
         <div class="form__error">
             @error('password')
-            {{$message}}
+                {{$message}}
             @enderror
         </div>
         <div class="form__button">

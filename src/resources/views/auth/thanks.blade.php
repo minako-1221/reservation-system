@@ -5,12 +5,12 @@
 @endsection
 
 @section('content')
-<div class="auth__content">
+<div class="auth__content--thanks">
     <div class="thanks__message">
         <span>会員登録ありがとうございます</span>
     </div>
     <div class="thanks__button">
-        <button class="form__button-submit" type="submit">ログインする</button>
+        <a href="{{ route('login') }}" class="form__button-submit">ログインする</a>
     </div>
 </div>
 @endsection

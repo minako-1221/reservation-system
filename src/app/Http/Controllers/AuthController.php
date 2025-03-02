@@ -11,9 +11,14 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
+    public function index()
+    {
+        return view('index');
+    }
+
     public function getRegister()
     {
-        return view('register');
+        return view('auth.register');
     }
 
     public function postRegister(RegisterRequest $request)
@@ -23,17 +28,17 @@ class AuthController extends Controller
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
         ]);
-        return redirect('thanks');
+        return redirect()->route('thanks');
     }
 
     public function getThanks()
     {
-        return view('thanks');
+        return view('auth.thanks');
     }
 
     public function getLogin()
     {
-        return view('login');
+        return view('auth.login');
     }
 
     public function postLogin(LoginRequest $request)
@@ -41,13 +46,13 @@ class AuthController extends Controller
         if(Auth::attempt(['email'=>$request['email'],'password'=>$request['password']])){
             return redirect('/');
         }else{
-            return redirect('login')->with('result','メールアドレスまたはパスワードが間違っています');
+            return redirect('auth.login')->with('result','メールアドレスまたはパスワードが間違っています');
         }
     }
 
     public function getLogout()
     {
         Auth::logout();
-        return redirect('login');
+        return redirect('auth.login');
     }
 }

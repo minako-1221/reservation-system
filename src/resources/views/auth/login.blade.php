@@ -27,7 +27,7 @@
         </div>
         <div class="form-group">
             <i class="icon password-icon"></i>
-            <input type="password" name="password" placeholder="Password" value="{{old('password')}}" />
+            <input type="password" name="password" placeholder="Password" />
         </div>
         <div class="form__error">
             @error('password')
