@@ -5,19 +5,21 @@
 }
 
 .auth__content {
-    margin: 0 auto;
+    margin: 100px auto;
     width: 100%;
     max-width: 400px;
     background: white;
-    border-radius: 3px;
+    border-radius: 5px;
     box-shadow: 3px 3px 3px #808080;
 }
 
 .auth-form__heading {
     height: 50px;
-    text-align: center;
-    justify-content: left;
+    text-align: left;
+    padding-left: 20px;
+    border-radius: 5px 5px 0px 0px;
     background: blue;
+    align-items: center;
 }
 
 h2 {
@@ -26,11 +28,18 @@ h2 {
     font-size: 22px;
 }
 
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
 .form-group {
     display: flex;
     align-items: center;
-    padding: 10px;
-    margin-top: 10px;
+    padding: 5px;
+    margin-top: 15px;
+    width: 100%;
 }
 
 .icon {
@@ -47,11 +56,12 @@ h2 {
 }
 
 .password-icon::before {
-    content: 🔒;
+    content: "🔒";
 }
 
-input {
-    border-bottom: 1px;
+.form-group input {
+    border: none;
+    border-bottom: 1px solid #808080;
     outline: none;
     font-size: 16px;
     flex: 1;
@@ -63,30 +73,53 @@ input {
     color: red;
 }
 
-.form__button {
-    margin: 10px;
-    justify-content: right;
+.form__button{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 5px;
 }
 
 .form__button-submit {
-    padding: 5px;
-    text-align: center;
-    justify-content: center;
-    background: blue;
+    margin-top: 15px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    font-size: 14px;
+    background-color: blue;
     color: white;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.auth__content--thanks {
+    margin: 100px auto;
+    width: 100%;
+    max-width: 400px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px #808080;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
 .thanks__message {
-    padding-top: 50px;
-    justify-content: center;
+    text-align: center;
+    padding: 20px;
 }
 
 span {
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 20px;
 }
 
 .thanks__button {
-    padding: 20px 50px auto;
+    display: flex;
     justify-content: center;
+    padding: 20px;
+    width: 100%;
+    text-align: center;
 }
+
