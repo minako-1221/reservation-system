@@ -13,15 +13,20 @@
 <body>
     <header class="header">
         <nav class="navbar">
-            <div class="menu-toggle" id="menu-toggle">
-                <span class="bar medium"></span>
-                <span class="bar long"></span>
-                <span class="bar short"></span>
+            <div class="header__left">
+                <div class="menu-toggle" id="menu-toggle">
+                    <span class="bar medium"></span>
+                    <span class="bar long"></span>
+                    <span class="bar short"></span>
+                </div>
+                <div class="header__logo">
+                    <a href="/">Rese</a>
+                </div>
+            </div>
+            <div class="header__right">
+                @yield('header-right')
             </div>
         </nav>
-        <div class="header__logo">
-            <a href="/">Rese</a>
-        </div>
     </header>
     <div class="modal" id="modal">
         <ul class="modal-menu" id="modal-menu">
