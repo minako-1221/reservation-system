@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Area;
 use App\Models\Genre;
 use App\Models\Shop;
+use App\Models\Favorite;
 
 class HomeController extends Controller
 {
@@ -15,7 +17,10 @@ class HomeController extends Controller
         $genres = Genre::all();
         $shops = Shop::all();
 
-        return view('index', compact('areas', 'genres', 'shops'));
+        $favoriteShops = Auth::check()
+            ? Favorite::where('user_id', Auth::id())->pluck('shop_id')->toArray() : [];
+
+        return view('index', compact('areas', 'genres', 'shops', 'favoriteShops'));
     }
 
     public function search(Request $request)
