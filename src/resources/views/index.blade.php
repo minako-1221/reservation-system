@@ -36,18 +36,20 @@
                 <div class="shop-card-image">
                     <img src="{{asset($shop->image_path) }}" alt="Shop Image">
                 </div>
-                <div class="shop-card-details">
-                    <h3>{{ $shop->name }}</h3>
-                    <p>#{{ $shop->area->name }} #{{ $shop->genre->name }}</p>
-                </div>
-                <div class="shop-card-actions">
-                    <a href="{{ route('shop.show', $shop->id) }}" class="btn-info">詳しくみる</a>
-                    <form action="{{ route('favorites.toggle', $shop->id) }}" method="POST">
-                        @csrf
-                        <button type="submit" class="favorite-btn">
-                            <i class="fa {{ in_array($shop->id, $favoriteShops) ? 'fa-heart' : 'fa-heart-o' }}"></i>
-                        </button>
-                    </form>
+                <div class="shop-card-text">
+                    <div class="shop-card-details">
+                        <h3>{{ $shop->name }}</h3>
+                        <p>#{{ $shop->area->name }} #{{ $shop->genre->name }}</p>
+                    </div>
+                    <div class="shop-card-actions">
+                        <a href="{{ route('shop.show', $shop->id) }}" class="btn-info">詳しくみる</a>
+                        <form action="{{ route('favorites.toggle', $shop->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="favorite-btn {{ in_array($shop->id, $favoriteShops ?? []) ? 'active' : '' }}" data-favorite="{{ in_array($shop->id, $favoriteShops ?? []) ? 'true' : 'false' }}">
+                                <i class="fa fa-heart"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         @endforeach
