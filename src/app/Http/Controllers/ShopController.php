@@ -8,11 +8,10 @@ use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
-    public function show($id)
+    public function show($shop_id)
     {
-        $shop = Shop::findOrFail($id);
-        $reservation = Reservation::where('shop_id', $id)->first();
+        $shop = Shop::find($shop_id);
 
-        return view('detail', compact('shop','reservation'));
+        return view('detail', compact('shop'));
     }
 }

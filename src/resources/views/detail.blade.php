@@ -1,51 +1,98 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
 @endsection
 
 @section('content')
-    <div class="detail">
-        <div class="detail-ttl">
-            <a href="/"></a>
-            <h2></h2>
-        </div>
-        <div class="detail-img">
-            <img src="" alt="">
-        </div>
-        <div class="detail-hush">
-            <p></p>
-        </div>
-        <div class="detail-text"></div>
-    </div>
-    <div class="reservation">
-        <div class="reservation-ttl">
-            <h3>予約</h3>
-        </div>
-        <div class="reservation-date"></div>
-        <div class="reservation-time"></div>
-        <div class="reservation-number"></div>
-        <div class="reservation-details">
-            <div class="info-shop">
-                <h3>Shop</h3>
-                <p>{{ $reservation->shop->name }}</p>
+    <div class="container">
+        <div class="detail">
+            <div class="detail-ttl">
+                <a href="/"><</a>
+                <h2>{{ $shop->name }}</h2>
             </div>
-            <div class="info-date">
-                <h3>Date</h3>
-                <p>{{ \Carbon\Carbon::parse($reservation->reservation_datetaime)->format('Y-m-d') }}</p>
+            <div class="detail-img">
+                <img src="{{ asset($shop->image_path) }}" alt="{{ $shop->name }}" class="img-fluid">
             </div>
-            <div class="info-time">
-                <h3>Time</h3>
-                <p>{{ \Carbon\Carbon::parse($reservation->reservation_datetime)->format('H:i') }}</p>
+            <div class="detail-hush">
+                <p>#{{ $shop->area->name }} #{{ $shop->genre->name }}</p>
             </div>
-            <div class="info-number">
-                <h3>Number</h3>
-                <p>{{ $reservation->number_of_people }}人</p>
+            <div class="detail-text">
+                <p>{{ $shop->description }}</p>
             </div>
         </div>
-        <div class="reservation-btn">
-            <button>予約する</button>
+        <div class="reservation">
+            <form action="{{ route('reservation.store', $shop->id) }}" method="POST">
+                @csrf
+                <div class="reservation-form">
+                    <div class="reservation-ttl">
+                        <h3>予約</h3>
+                    </div>
+                    <div class="form-input">
+                        <input type="hidden" name="shop_id" value="{{ $shop->id }}">
+                        <div class="form-item">
+                            <input type="text" id="reservation_date" name="reservation_date" class="form-date" required>
+                            <i class="fa-solid fa-calendar" id="calendar-icon"></i>
+                        </div>
+                        @error('reservation_date')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                        <div class="form-item">
+                            <select id="reservation_time" name="reservation_time" class="form-time" required>
+                                @php
+            $start = \Carbon\Carbon::createFromTime(11, 0);
+            $end = \Carbon\Carbon::createFromTime(20, 0);
+                                @endphp
+                                @while($start <= $end)
+                                    <option value="{{ $start->format('H:i') }}">{{ $start->format('H:i') }}</option>
+                                    @php $start->addMinutes(30); @endphp
+                                @endwhile
+                            </select>
+                            @error('reservation_time')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-item">
+                            <select id="number_of_people" name="number_of_people" class="form-number" required>
+                                @for($i = 1; $i <= 10; $i++)
+                                    <option value="{{ $i }}">{{ $i }}人</option>
+                                @endfor
+                            </select>
+                            @error('number_of_people')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    @if(isset($reservation))
+                        <div class="reservation-list">
+                            <div class="info-item">
+                                <h3>Shop</h3>
+                                <p>{{ $reservation->shop->name }}</p>
+                            </div>
+                            <div class="info-item">
+                                <h3>Date</h3>
+                                <p>{{ \Carbon\Carbon::parse($reservation->reservation_datetime)->format('Y-m-d') }}</p>
+                            </div>
+                            <div class="info-item">
+                                <h3>Time</h3>
+                                <p>{{ \Carbon\Carbon::parse($reservation->reservation_datetime)->format('H:i') }}</p>
+                            </div>
+                            <div class="info-item">
+                                <h3>Number</h3>
+                                <p>{{ $reservation->number_of_people }}人</p>
+                            </div>
+                        </div>
+                    @endif
+                    <div class="reservation-btn">
+                        <button class="reserve-btn" type="submit">予約する</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 
+@endsection
+
+@section('js')
+<script src="{{ asset('js/detail.js') }}"></script>
 @endsection
