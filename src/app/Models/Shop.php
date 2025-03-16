@@ -20,4 +20,14 @@ class Shop extends Model
     {
         return $this->belongsTo(Genre::class, 'genre_id');
     }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
 }

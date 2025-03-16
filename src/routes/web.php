@@ -28,6 +28,7 @@ Route::post('/login', [AuthController::class, 'postLogin']);
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 Route::post('/favorites/{shopId}/toggle', [FavoriteController::class, 'toggle'])->name('favorites.toggle');
 Route::get('/detail/{shop_id}', [ShopController::class, 'show'])->name('shop.show');
+Route::post('/detail/{shop_id}', [ReservationController::class, 'store'])->name('reservation.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/logout', [AuthController::class, 'getLogout']);

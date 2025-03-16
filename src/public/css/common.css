@@ -33,7 +33,7 @@ body{
     display: flex;
     flex-direction: column;
     gap: 7px;
-    border-radius: 3px;
+    border-radius: 5px;
     box-shadow: 3px 3px 3px #808080;
     cursor: pointer;
     z-index: 1001;
