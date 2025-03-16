@@ -1,15 +1,16 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/detail.css') }}" />
 @endsection
 
 @section('content')
     <div class="container">
         <div class="detail">
             <div class="detail-ttl">
-                <a href="/"><</a>
-                <h2>{{ $shop->name }}</h2>
+                <a href="/">
+                    <</a>
+                        <h2>{{ $shop->name }}</h2>
             </div>
             <div class="detail-img">
                 <img src="{{ asset($shop->image_path) }}" alt="{{ $shop->name }}" class="img-fluid">
@@ -22,7 +23,7 @@
             </div>
         </div>
         <div class="reservation">
-            <form action="{{ route('reservation.store', $shop->id) }}" method="POST">
+            <form action="{{ route('reservation.store', $shop->id) }}" method="POST" class="form">
                 @csrf
                 <div class="reservation-form">
                     <div class="reservation-ttl">
@@ -31,22 +32,26 @@
                     <div class="form-input">
                         <input type="hidden" name="shop_id" value="{{ $shop->id }}">
                         <div class="form-item">
-                            <input type="text" id="reservation_date" name="reservation_date" class="form-date" required>
+                            <input type="text" id="reservation_date" name="reservation_date" class="form-date"
+                                value="{{ old('reservation_date', \Carbon\Carbon::today()->format('Y/m/d')) }}" required>
                             <i class="fa-solid fa-calendar" id="calendar-icon"></i>
                         </div>
                         @error('reservation_date')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                         <div class="form-item">
+                            @php
+                                $times = [];
+                                for ($time = \Carbon\Carbon::parse('11:00'); $time <= \Carbon\Carbon::parse('20:00'); $time->addMinutes(30)) {
+                                    $times[] = $time->format('H:i');
+                                }
+                            @endphp
                             <select id="reservation_time" name="reservation_time" class="form-time" required>
-                                @php
-            $start = \Carbon\Carbon::createFromTime(11, 0);
-            $end = \Carbon\Carbon::createFromTime(20, 0);
-                                @endphp
-                                @while($start <= $end)
-                                    <option value="{{ $start->format('H:i') }}">{{ $start->format('H:i') }}</option>
-                                    @php $start->addMinutes(30); @endphp
-                                @endwhile
+                                @foreach($times as $time)
+                                    <option value="{{ $time }}" {{ old('reservation_time') == $time ? 'selected' : '' }}>
+                                        {{ $time }}
+                                    </option>
+                                @endforeach
                             </select>
                             @error('reservation_time')
                                 <div class="text-danger">{{ $message }}</div>
@@ -55,7 +60,8 @@
                         <div class="form-item">
                             <select id="number_of_people" name="number_of_people" class="form-number" required>
                                 @for($i = 1; $i <= 10; $i++)
-                                    <option value="{{ $i }}">{{ $i }}人</option>
+                                    <option value="{{ $i }}" {{ old('number_of_people') == $i ? 'selected' : '' }}>{{ $i }}人
+                                    </option>
                                 @endfor
                             </select>
                             @error('number_of_people')
@@ -94,5 +100,5 @@
 @endsection
 
 @section('js')
-<script src="{{ asset('js/detail.js') }}"></script>
+    <script src="{{ asset('js/detail.js') }}"></script>
 @endsection
