@@ -139,19 +139,26 @@ select:focus {
 }
 
 .reservation-list{
-    width: 240px;
+    width: 80%;
     background-color: #3355ff;
     color: white;
     padding: 20px;
+    margin: 10px 25px;
+}
+
+.info-item{
+    display: flex;
 }
 
 .info-item h3{
     font-size: 14px;
-    width: 80px;
+    width: 100px;
+    margin: 5px 0;
 }
 
 .info-item p{
     font-size: 14px;
+    margin: 5px 0;
 }
 
 .reservation-btn,
