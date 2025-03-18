@@ -23,11 +23,11 @@ class ReservationController extends Controller
             'number_of_people' => $request->number_of_people,
         ]);
 
-        return redirect()->route('reservation.complete');
+        return redirect()->route('reservation.complete',['shop_id'=>$shop_id]);
     }
 
-    public function complete()
+    public function complete($shop_id)
     {
-        return view('done');
+        return view('done',compact('shop_id'));
     }
 }
