@@ -10,12 +10,18 @@
             <div class="reservation-ttl">
                 <h2>予約状況</h2>
             </div>
-            <div class="reservation-list">
-                <div class="reservation-list-header">
-                    <h3>予約1</h3>
-                </div>
-                @if(isset($reservation) && $reservations->isNotEmpty())
-                    @foreach ($reservations as $reservation)
+            @foreach($reservations as $index => $reservation)
+                <div class="reservation-list">
+                    @if(isset($reservations) && $reservations->isNotEmpty())
+                        <div class="reservation-list-header">
+                            <div class="reservation-list-header-left">
+                                <i class="fa fa-clock clock-icon"></i>
+                                <h3>予約{{ $index + 1 }}</h3>
+                            </div>
+                            <div class="reservation-list-header-right">
+                                <i class="fa fa-times-circle cancel-icon"></i>
+                            </div>
+                        </div>
                         <div class="info-item">
                             <h3>Shop</h3>
                             <p>{{ $reservation->shop->name }}</p>
@@ -32,9 +38,11 @@
                             <h3>Number</h3>
                             <p>{{ $reservation->number_of_people }}人</p>
                         </div>
-                    @endforeach
-                @endif
-            </div>
+                    @else
+                        <p>予約はありません</p>
+                    @endif
+                </div>
+            @endforeach
         </div>
         <div class="favorite">
             <div class="user-name">
@@ -46,6 +54,7 @@
             <div class="favorite-list">
                 @if(isset($favorites) && $favorites->isNotEmpty())
                     @foreach ($favorites as $favorite)
+                        @php $shop = $favorite->shop; @endphp
                         <div class="shop-card">
                             <div class="shop-card-image">
                                 <img src="{{asset($shop->image_path) }}" alt="Shop Image">

@@ -1,50 +1,91 @@
 .content{
     width: 85%;
     display: flex;
+    margin: 0 auto;
 }
 
 .reservation{
     width: 40%;
-    margin-top: 100px;
+    margin: 80px 30px 0 0;
 }
 
-.reservation-ttl{
+.reservation-ttl h2{
     font-size: 20px;
+    margin: 0;
+    padding: 20px 0;
 }
 
 .reservation-list{
-    width: 240px;
+    width: 100%;
     background-color: #3355ff;
     color: white;
     padding: 20px;
     margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px #808080;
 }
 
 .reservation-list-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0 20px 0;
+    position: relative;
+}
+
+.reservation-list-header-left{
+    display: flex;
+    align-items: center;
+}
+
+.clock-icon{
+    font-size: 16px;
+    margin-right: 20px;
+}
+
+.reservation-list-header h3{
     font-size: 14px;
+    margin: 0;
+}
+
+.cancel-icon{
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.info-item{
+    display: flex;
 }
 
 .info-item h3 {
     font-size: 14px;
-    width: 80px;
+    width: 100px;
+    margin: 10px 0;
 }
 
 .info-item p {
     font-size: 14px;
+    margin: 10px 0;
 }
 
 .favorite{
     width: 60%;
+    margin-left: 30px;
 }
 
 .user_name{
-    height: 100px;
+    height: 80px;
+}
+
+.user_name h2{
     font-size: 24px;
     text-align: center;
 }
 
-.favorite-ttl{
+.favorite-ttl h3{
     font-size: 20px;
+    margin: 0;
+    padding: 20px 0;
 }
 
 .favorite-list-area{
@@ -55,7 +96,7 @@
     width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 30px 20px;
+    gap: 30px 40px;
     margin: 0 auto;
 }
 
