@@ -2,6 +2,11 @@
     background-color: #ffaaaa;
     color: red;
     height: 60px;
+    display: flex;
+    align-items: center;
+    padding-left: 50px;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .auth__content {
@@ -71,6 +76,9 @@ h2 {
     margin-top: 5px;
     font-size: 14px;
     color: red;
+    text-align: left;
+    width: 100%;
+    padding: 0 5px 0 38px;
 }
 
 .form__button{

@@ -5,9 +5,9 @@
 @endsection
 
 @section('content')
-@if(session('result'))
+@if(session('failed'))
 <div class="flash-message">
-    {{session('result')}}
+    {{session('failed')}}
 </div>
 @endif
 <div class="auth__content">

@@ -41,7 +41,7 @@ class ReservationRequest extends FormRequest
                 function ($attribute, $value, $fail) {
                     $allowedTimes = $this->getAllowedTimes();
                     if (!in_array($value, $allowedTimes)) {
-                        $fail('予約可能な時間は 11:00 〜 20:00 の 10 分刻みです。');
+                        $fail('予約可能な時間は 11:00 〜 20:00 の 30 分刻みです。');
                     }
                 }
             ],
