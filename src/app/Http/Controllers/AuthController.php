@@ -43,10 +43,10 @@ class AuthController extends Controller
 
     public function postLogin(LoginRequest $request)
     {
-        if(Auth::attempt(['email'=>$request['email'],'password'=>$request['password']])){
+        if(Auth::attempt(['email'=>$request->email,'password'=>$request->password])){
             return redirect('/');
         }else{
-            return redirect('auth.login')->with('result','メールアドレスまたはパスワードが間違っています');
+            return redirect()->route('login')->with('failed','メールアドレスまたはパスワードが間違っています');
         }
     }
 
