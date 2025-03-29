@@ -165,6 +165,7 @@
     color: #ddd;
 }
 
-.favorite-btn.active i {
-    color: pink;
+.favorite-btn.active i,
+.favorite-btn i.favorited {
+    color: #ff0088;
 }

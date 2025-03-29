@@ -30,4 +30,28 @@ class Shop extends Model
     {
         return $this->hasMany(Favorite::class);
     }
+
+    public function scopeFilterByArea($query, $areaId)
+    {
+        if(!empty($areaId)){
+            return $query->where('area_id', $areaId);
+        }
+        return $query;
+    }
+
+    public function scopeFilterByGenre($query,$genreId)
+    {
+        if(!empty($genreId)){
+            return $query->where('genre_id', $genreId);
+        }
+        return $query;
+    }
+
+    public function scopeFilterByKeyword($query,$keyword)
+    {
+        if(!empty($keyword)){
+            return $query->where('name', 'like', "%{$keyword}%");
+        }
+        return $query;
+    }
 }

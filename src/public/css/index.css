@@ -76,14 +76,25 @@
     color: #aaa;
 }
 
-.search-input-wrapper::before {
-    content: "🔍";
+.search-btn {
     position: absolute;
     left: 10px;
-    font-size: 10px;
-    color: #ddd;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #aaa;
 }
 
+.no-results{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    font-size: 18px;
+}
 
 .shop-list{
     width: 90%;
@@ -159,5 +170,5 @@
 }
 
 .favorite-btn.active i{
-    color: pink;
+    color: #ff0088;
 }
