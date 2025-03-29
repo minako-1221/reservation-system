@@ -25,26 +25,24 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
-        $area = $request->input('area');
-        $genre = $request->input('genre');
-        $shop_name = $request->input('shop_name');
+        $areas = Area::all();
+        $genres = Genre::all();
+        $shops = Shop::query();
 
-        $query = Shop::query();
-
-        if ($area) {
-            $query->where('area_id', $area);
+        if ($request->area) {
+        $shops->where('area_id', $request->area);
         }
 
-        if ($genre) {
-            $query->where('genre_id', $genre);
+        if ($request->genre) {
+        $shops->where('genre_id', $request->genre);
         }
 
-        if ($shop_name) {
-            $query->where('name', 'like', "%{$shop_name}%");
+        if ($request->keyword) {
+        $shops->where('name', 'LIKE', '%' . $request->keyword . '%');
         }
 
-        $shops = $query->get();
+        $shops = $shops->get();
 
-        return view('search', compact('shops'));
+        return view('index', compact('areas','genres','shops'));
     }
 }

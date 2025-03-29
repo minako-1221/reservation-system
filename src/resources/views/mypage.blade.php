@@ -68,10 +68,11 @@
                                     <a href="{{ route('shop.show', $shop->id) }}" class="btn-info">詳しくみる</a>
                                     <form action="{{ route('favorites.toggle', $shop->id) }}" method="POST">
                                         @csrf
+                                        @php $isFavorite = in_array($shop->id,$favoriteShops ?? []); @endphp
                                         <button type="submit"
-                                            class="favorite-btn {{ in_array($shop->id, $favoriteShops ?? []) ? 'active' : '' }}"
-                                            data-favorite="{{ in_array($shop->id, $favoriteShops ?? []) ? 'true' : 'false' }}">
-                                            <i class="fa fa-heart"></i>
+                                            class="favorite-btn {{ $isFavorite ? 'active' : '' }}"
+                                            data-favorite="{{ $isFavorite ? 'true' : 'false' }}">
+                                            <i class="fa fa-heart {{ $isFavorite ? 'favorited' : '' }}"></i>
                                         </button>
                                     </form>
                                 </div>
