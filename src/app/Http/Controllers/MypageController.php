@@ -15,11 +15,16 @@ class MypageController extends Controller
     {
         $user = Auth::user();
         $user_name = $user->name;
-
         $today = now()->startOfDay();
-
-        $favorites = Favorite::where('user_id', $user->id)->get();
         $shop=Shop::first();
+
+        $favoriteShops = Shop::with(['area', 'genre'])
+            ->whereIn('id', function ($query) use ($user) {
+                $query->select('shop_id')
+                    ->from('favorites')
+                    ->where('user_id', $user->id);
+            })
+            ->get();
 
         $reservations = Reservation::where('user_id', $user->id)
             ->where('reservation_datetime', '>=', $today)
@@ -27,6 +32,6 @@ class MypageController extends Controller
             ->with('shop')
             ->get();
 
-        return view('mypage',compact('user_name','reservations','favorites'));
+        return view('mypage',compact('user_name','reservations','favoriteShops'));
     }
 }
