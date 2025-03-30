@@ -17,8 +17,7 @@ class HomeController extends Controller
         $genres = Genre::all();
         $shops = Shop::all();
 
-        $favoriteShops = Auth::check()
-            ? Favorite::where('user_id', Auth::id())->pluck('shop_id')->toArray() : [];
+        $favoriteShops = app(FavoriteController::class)->getUserFavorites();
 
         return view('index', compact('areas', 'genres', 'shops', 'favoriteShops'));
     }

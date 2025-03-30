@@ -52,36 +52,34 @@
                 <h3>お気に入り店舗</h3>
             </div>
             <div class="favorite-list">
-                @if(isset($favorites) && $favorites->isNotEmpty())
-                    @foreach ($favorites as $favorite)
-                        @php $shop = $favorite->shop; @endphp
-                        <div class="shop-card">
-                            <div class="shop-card-image">
-                                <img src="{{asset($shop->image_path) }}" alt="Shop Image">
+                @forelse($favoriteShops as $shop)
+                    <div class="shop-card">
+                        <div class="shop-card-image">
+                            <img src="{{asset($shop->image_path) }}" alt="Shop Image">
+                        </div>
+                        <div class="shop-card-text">
+                            <div class="shop-card-details">
+                                <h3>{{ $shop->name }}</h3>
+                                <p>#{{ $shop->area->name }} #{{ $shop->genre->name }}</p>
                             </div>
-                            <div class="shop-card-text">
-                                <div class="shop-card-details">
-                                    <h3>{{ $shop->name }}</h3>
-                                    <p>#{{ $shop->area->name }} #{{ $shop->genre->name }}</p>
-                                </div>
-                                <div class="shop-card-actions">
-                                    <a href="{{ route('shop.show', $shop->id) }}" class="btn-info">詳しくみる</a>
-                                    <form action="{{ route('favorites.toggle', $shop->id) }}" method="POST">
-                                        @csrf
-                                        @php $isFavorite = in_array($shop->id,$favoriteShops ?? []); @endphp
-                                        <button type="submit"
-                                            class="favorite-btn {{ $isFavorite ? 'active' : '' }}"
-                                            data-favorite="{{ $isFavorite ? 'true' : 'false' }}">
-                                            <i class="fa fa-heart {{ $isFavorite ? 'favorited' : '' }}"></i>
-                                        </button>
-                                    </form>
-                                </div>
+                            <div class="shop-card-actions">
+                                <a href="{{ route('shop.show', $shop->id) }}" class="btn-info">詳しくみる</a>
+                                <form action="{{ route('favorites.toggle', $shop->id) }}" method="POST">
+                                    @csrf
+                                    @php
+                                        $isFavorite = in_array($shop->id, auth()->user()->favorites()->pluck('shop_id')->toArray());
+                                    @endphp
+                                    <button type="submit" class="favorite-btn {{ $isFavorite ? 'active' : '' }}"
+                                        data-favorite="{{ $isFavorite ? 'true' : 'false' }}">
+                                        <i class="fa fa-heart {{ $isFavorite ? 'favorited' : '' }}"></i>
+                                    </button>
+                                </form>
                             </div>
                         </div>
-                    @endforeach
-                @else
-                <p>お気に入りがありません。</p>
-                @endif
+                    </div>
+                @empty
+                    <p>お気に入りがありません。</p>
+                @endforelse
             </div>
         </div>
     </div>

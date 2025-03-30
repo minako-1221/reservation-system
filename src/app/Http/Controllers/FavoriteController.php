@@ -24,4 +24,10 @@ class FavoriteController extends Controller
 
         return redirect()->back();
     }
+
+    public function getUserFavorites()
+    {
+        return auth()->check()
+            ? Favorite::where('user_id', auth()->id())->pluck('shop_id')->toArray() : [];
+    }
 }
