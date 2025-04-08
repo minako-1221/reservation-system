@@ -26,12 +26,12 @@ class MypageController extends Controller
             })
             ->get();
 
-        $reservations = Reservation::where('user_id', $user->id)
+        $userReservations = Reservation::where('user_id', $user->id)
             ->where('reservation_datetime', '>=', $today)
             ->orderBy('reservation_datetime', 'asc')
             ->with('shop')
             ->get();
 
-        return view('mypage',compact('user_name','reservations','favoriteShops'));
+        return view('mypage',compact('user_name','userReservations','favoriteShops'));
     }
 }

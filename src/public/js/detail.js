@@ -14,4 +14,24 @@ $(document).ready(function() {
     $("#calendar-icon").click(function() {
         $("#reservation_date").focus();
     });
+
+    $(".reserve-btn").click(function() {
+        if ($(this).attr("data-auth") === "false") {
+            console.log("未ログインユーザーです。モーダルを表示します。");
+            $("#loginModal").fadeIn();
+        }
+    });
+
+    $(".cancel-icon").click(function() {
+        console.log("モーダルを閉じます。");
+        $("#loginModal").fadeOut();
+    });
+
+    function showLoginModal() {
+        document.getElementById('loginModal').style.display = 'block';
+    }
+
+    function closeLoginModal() {
+        document.getElementById('loginModal').style.display = 'none';
+    }
 });

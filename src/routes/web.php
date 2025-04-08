@@ -20,7 +20,7 @@ use App\Http\Controllers\ShopController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/register', [AuthController::class, 'getRegister']);
+Route::get('/register', [AuthController::class, 'getRegister'])->name('register');
 Route::post('/register', [AuthController::class, 'postRegister']);
 Route::get('/thanks', [AuthController::class, 'getThanks'])->name('thanks');
 Route::get('/login', [AuthController::class, 'getLogin'])->name('login');
@@ -33,5 +33,6 @@ Route::get('/done/{shop_id}', [ReservationController::class, 'complete'])->name(
 
 Route::middleware('auth')->group(function () {
     Route::get('/logout', [AuthController::class, 'getLogout']);
-    Route::get('/mypage', [MypageController::class, 'mypage']);
+    Route::get('/mypage', [MypageController::class, 'mypage'])->name('mypage');
+    Route::delete('/reservations/{id}', [ReservationController::class, 'destroy'])->name('reservation.destroy');
 });
