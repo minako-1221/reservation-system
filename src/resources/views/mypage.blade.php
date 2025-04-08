@@ -10,16 +10,18 @@
             <div class="reservation-ttl">
                 <h2>予約状況</h2>
             </div>
-            @foreach($reservations as $index => $reservation)
+            @foreach($userReservations as $index => $reservation)
                 <div class="reservation-list">
-                    @if(isset($reservations) && $reservations->isNotEmpty())
+                    @if(isset($userReservations) && $userReservations->isNotEmpty())
                         <div class="reservation-list-header">
                             <div class="reservation-list-header-left">
                                 <i class="fa fa-clock clock-icon"></i>
                                 <h3>予約{{ $index + 1 }}</h3>
                             </div>
                             <div class="reservation-list-header-right">
-                                <i class="fa fa-times-circle cancel-icon"></i>
+                                <button class="cancel-btn" data-reservation-id="{{ $reservation->id }}">
+                                    <i class="fa fa-times-circle cancel-icon"></i>
+                                </button>
                             </div>
                         </div>
                         <div class="info-item">
@@ -43,6 +45,24 @@
                     @endif
                 </div>
             @endforeach
+            <div id="cancelModal" class="cancel-modal" style="display:none">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <i class="fa fa-times-circle modal-cancel-icon"></i>
+                    </div>
+                    <div class="modal-text">
+                        <p>予約をキャンセルします。<br>本当によろしいですか？</p>
+                    </div>
+                    <div class="modal-actions">
+                        <form id="cancelForm" class="cancel-form" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit" class="btn-yes">はい</button>
+                        </form>
+                        <a href="{{ route('mypage') }}" class="btn-no">いいえ</a>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="favorite">
             <div class="user-name">
@@ -67,7 +87,7 @@
                                 <form action="{{ route('favorites.toggle', $shop->id) }}" method="POST">
                                     @csrf
                                     @php
-                                        $isFavorite = in_array($shop->id, auth()->user()->favorites()->pluck('shop_id')->toArray());
+    $isFavorite = in_array($shop->id, auth()->user()->favorites()->pluck('shop_id')->toArray());
                                     @endphp
                                     <button type="submit" class="favorite-btn {{ $isFavorite ? 'active' : '' }}"
                                         data-favorite="{{ $isFavorite ? 'true' : 'false' }}">
@@ -85,4 +105,8 @@
     </div>
 
 
+@endsection
+
+@section('js')
+    <script src="{{ asset('js/mypage.js') }}"></script>
 @endsection

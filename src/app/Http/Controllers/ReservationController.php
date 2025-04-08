@@ -30,4 +30,16 @@ class ReservationController extends Controller
     {
         return view('done',compact('shop_id'));
     }
+
+    public function destroy($id)
+    {
+        $reservation = Reservation::find($id);
+
+        if($reservation){
+            $reservation->delete();
+
+            return redirect()->route('mypage');
+        }
+
+    }
 }
