@@ -7,6 +7,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ShopController;
+use App\Models\Reservation;
+use PgSql\Result;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,4 +37,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/logout', [AuthController::class, 'getLogout']);
     Route::get('/mypage', [MypageController::class, 'mypage'])->name('mypage');
     Route::delete('/reservations/{id}', [ReservationController::class, 'destroy'])->name('reservation.destroy');
+    Route::get('/reservations/{id}/change', [ReservationController::class, 'change'])->name('reservations.change');
+    Route::put('/reservations/{reservation}', [ReservationController::class, 'update'])->name('reservation.update');
+    Route::get('/reservations/{reservation}/changed', function (Reservation $reservation) {
+        return view('change_complete', compact('reservation'));
+    })->name('reservation.changed');
 });

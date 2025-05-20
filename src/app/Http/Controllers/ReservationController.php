@@ -42,4 +42,37 @@ class ReservationController extends Controller
         }
 
     }
+
+    public function change($id)
+    {
+        $reservation = Reservation::with('shop')->findOrFail($id);
+
+        return view('change',compact('reservation'));
+    }
+
+    public function update(Request $request,Reservation $reservation)
+    {
+        $validated = $request->validate([
+            'reservation_date' => ['required', 'date', 'after_or_equal:today'],
+            'reservation_time' => ['required', 'date_format:H:i'],
+            'number_of_people' => ['required', 'integer', 'min:1', 'max:10'],
+        ]);
+
+        $reservationDateTime = \Carbon\Carbon::createFromFormat(
+            'Y/m/d H:i',
+            $validated['reservation_date'] . ' ' . $validated['reservation_time']
+        );
+
+        $reservation->update([
+            'reservation_datetime' => $reservationDateTime,
+            'number_of_people' => $validated['number_of_people'],
+        ]);
+
+        return redirect()->route('reservation.changed',['reservation'=>$reservation->id]);
+    }
+
+    public function changeComplete($reservaiton_id)
+    {
+        return view('change_complete', compact('reservation_id'));
+    }
 }

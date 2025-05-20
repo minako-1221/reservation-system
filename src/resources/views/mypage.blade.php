@@ -40,6 +40,9 @@
                             <h3>Number</h3>
                             <p>{{ $reservation->number_of_people }}人</p>
                         </div>
+                        <div class="change-item">
+                            <a href="{{ route('reservations.change',$reservation->id) }}" class="change-btn">変更</a>
+                        </div>
                     @else
                         <p>予約はありません</p>
                     @endif

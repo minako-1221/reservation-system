@@ -74,6 +74,20 @@
     margin: 10px 0;
 }
 
+.change-item{
+    display: flex;
+    justify-content: right;
+}
+
+.change-btn{
+    background-color: #ff0088;
+    color: white;
+    border-radius: 5px;
+    padding: 3px 10px;
+    border: none;
+    text-decoration: none;
+}
+
 .cancel-modal {
     display: none;
     position: fixed;
