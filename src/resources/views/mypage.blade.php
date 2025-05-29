@@ -9,45 +9,102 @@
         <div class="reservation">
             <div class="reservation-ttl">
                 <h2>予約状況</h2>
-            </div>
-            @foreach($userReservations as $index => $reservation)
-                <div class="reservation-list">
-                    @if(isset($userReservations) && $userReservations->isNotEmpty())
-                        <div class="reservation-list-header">
-                            <div class="reservation-list-header-left">
-                                <i class="fa fa-clock clock-icon"></i>
-                                <h3>予約{{ $index + 1 }}</h3>
-                            </div>
-                            <div class="reservation-list-header-right">
-                                <button class="cancel-btn" data-reservation-id="{{ $reservation->id }}">
-                                    <i class="fa fa-times-circle cancel-icon"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <h3>Shop</h3>
-                            <p>{{ $reservation->shop->name }}</p>
-                        </div>
-                        <div class="info-item">
-                            <h3>Date</h3>
-                            <p>{{ \Carbon\Carbon::parse($reservation->reservation_datetime)->format('Y-m-d') }}</p>
-                        </div>
-                        <div class="info-item">
-                            <h3>Time</h3>
-                            <p>{{ \Carbon\Carbon::parse($reservation->reservation_datetime)->format('H:i') }}</p>
-                        </div>
-                        <div class="info-item">
-                            <h3>Number</h3>
-                            <p>{{ $reservation->number_of_people }}人</p>
-                        </div>
-                        <div class="change-item">
-                            <a href="{{ route('reservations.change',$reservation->id) }}" class="change-btn">変更</a>
-                        </div>
-                    @else
-                        <p>予約はありません</p>
-                    @endif
+                <div class="reservation-toggle">
+                    <button id="current-btn" class="toggle-btn active">現在の予約</button>
+                    <button id="past-btn" class="toggle-btn">過去の予約</button>
                 </div>
-            @endforeach
+            </div>
+            <div id="current-reservations">
+                @if($futureReservations->isNotEmpty())
+                    @foreach($futureReservations as $index => $reservation)
+                        <div class="reservation-list">
+                            <div class="reservation-list-header">
+                                <div class="reservation-list-header-left">
+                                    <i class="fa fa-clock clock-icon"></i>
+                                    <h3>予約{{ $index + 1 }}</h3>
+                                </div>
+                                <div class="reservation-list-header-right">
+                                    <button class="cancel-btn" data-reservation-id="{{ $reservation->id }}">
+                                        <i class="fa fa-times-circle cancel-icon"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <h3>Shop</h3>
+                                <p>{{ $reservation->shop->name }}</p>
+                            </div>
+                            <div class="info-item">
+                                <h3>Date</h3>
+                                <p>{{ \Carbon\Carbon::parse($reservation->reservation_datetime)->format('Y-m-d') }}</p>
+                            </div>
+                            <div class="info-item">
+                                <h3>Time</h3>
+                                <p>{{ \Carbon\Carbon::parse($reservation->reservation_datetime)->format('H:i') }}</p>
+                            </div>
+                            <div class="info-item">
+                                <h3>Number</h3>
+                                <p>{{ $reservation->number_of_people }}人</p>
+                            </div>
+                            <div class="change-item">
+                                <a href="{{ route('reservations.change',$reservation->id) }}" class="change-btn">変更</a>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <p>予約はありません</p>
+                @endif
+            </div>
+            <div id="past-reservations" style="display:none;">
+                @if($pastReservations->isNotEmpty())
+                    @foreach($pastReservations as $index => $reservation)
+                        <div class="reservation-list">
+                            <div class="reservation-list-header">
+                                <div class="reservation-list-header-left">
+                                    <i class="fa fa-clock clock-icon"></i>
+                                    <h3>予約{{ $index + 1 }}</h3>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <h3>Shop</h3>
+                                <p>{{ $reservation->shop->name }}</p>
+                            </div>
+                            <div class="info-item">
+                                <h3>Date</h3>
+                                <p>{{ \Carbon\Carbon::parse($reservation->reservation_datetime)->format('Y-m-d') }}</p>
+                            </div>
+                            <div class="info-item">
+                                <h3>Time</h3>
+                                <p>{{ \Carbon\Carbon::parse($reservation->reservation_datetime)->format('H:i') }}</p>
+                            </div>
+                            <div class="info-item">
+                                <h3>Number</h3>
+                                <p>{{ $reservation->number_of_people }}人</p>
+                            </div>
+                            @if($reservation->review)
+                            <div class="review-display">
+                                <p class="rating-stars">
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        <span class="{{ $i <= $reservation->review->rating ? 'star-filled' : 'star-empty' }}">★</span>
+                                    @endfor
+                                </p>
+                                <p class="review-comment">
+                                    {{ $reservation->review->comment }}
+                                </p>
+                            </div>
+                            @endif
+                            <div class="change-item">
+                                @if($reservation->review)
+                                    <button class="submitted-btn" disabled>投稿済み</button>
+                                @else
+                                    <a href="{{ route('reviews.create',$reservation->id) }}" class="review-btn">レビュー投稿</a>
+                                @endif
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <p>予約はありません</p>
+                @endif
+            </div>
             <div id="cancelModal" class="cancel-modal" style="display:none">
                 <div class="modal-content">
                     <div class="modal-header">

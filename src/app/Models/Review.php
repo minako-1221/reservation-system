@@ -4,25 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Carbon\Carbon;
 
-class Reservation extends Model
+class Review extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'user_id',
         'shop_id',
-        'reservation_datetime',
-        'number_of_people',
+        'reservation_id',
+        'rating',
+        'comment'
     ];
-
-    protected $dates = ['reservation_datetime'];
-
-    public static function formatReservationDateTime($date, $time)
-    {
-        return Carbon::createFromFormat('Y/m/d H:i', "$date $time");
-    }
 
     public function user()
     {
@@ -34,8 +27,9 @@ class Reservation extends Model
         return $this->belongsTo(Shop::class);
     }
 
-    public function review()
+    public function reservation()
     {
-        return $this->hasOne(Review::class);
+        return $this->belongsTo(Reservation::class);
     }
+
 }

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Favorite;
 use App\Models\Shop;
 use App\Models\Reservation;
+use App\Models\Review;
 use Carbon\Carbon;
 
 class MypageController extends Controller
@@ -26,12 +27,18 @@ class MypageController extends Controller
             })
             ->get();
 
-        $userReservations = Reservation::where('user_id', $user->id)
-            ->where('reservation_datetime', '>=', $today)
+        $pastReservations = Reservation::where('user_id', $user->id)
+            ->where('reservation_datetime','<',now())
+            ->orderBy('reservation_datetime', 'desc')
+            ->with('shop','review')
+            ->get();
+
+        $futureReservations = Reservation::where('user_id', $user->id)
+            ->where('reservation_datetime', '>=', now())
             ->orderBy('reservation_datetime', 'asc')
             ->with('shop')
             ->get();
 
-        return view('mypage',compact('user_name','userReservations','favoriteShops'));
+        return view('mypage',compact('user_name','pastReservations','futureReservations','favoriteShops'));
     }
 }

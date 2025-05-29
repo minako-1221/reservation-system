@@ -9,10 +9,34 @@
     margin: 80px 40px 0 0;
 }
 
+.reservation-ttl{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .reservation-ttl h2{
     font-size: 20px;
     margin: 0;
     padding: 20px 0;
+}
+
+.reservation-toggle button{
+    margin-left: 10px;
+    border-radius: 5px;
+    border: none;
+    padding: 3px 10px;
+    cursor: pointer;
+}
+
+.reservation-toggle button.active{
+    background-color: #0000ff;
+    color: white;
+}
+
+.reservation-toggle button.inactive{
+    background-color: #505050;
+    color: #333;
 }
 
 .reservation-list{
@@ -86,6 +110,51 @@
     padding: 3px 10px;
     border: none;
     text-decoration: none;
+}
+
+.review-display{
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.rating-stars{
+    font-size: 20px;
+    margin: 0;
+}
+
+.star-filled{
+    color: #ffbb00;
+}
+
+.star-empty{
+    color: #ccc;
+}
+
+.review-comment{
+    color: black;
+    margin: 0;
+}
+
+.submitted-btn{
+    background-color: #ccc;
+    color: black;
+    border-radius: 5px;
+    padding: 3px 10px;
+    border: none;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.review-btn{
+    background-color: #ffbb00;
+    color: white;
+    border-radius: 5px;
+    padding: 3px 10px;
+    border: none;
+    text-decoration: none;
+    font-size: 16px;
 }
 
 .cancel-modal {
