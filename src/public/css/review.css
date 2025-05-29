@@ -1,0 +1,79 @@
+.container {
+    margin: 100px auto;
+    width: 100%;
+    max-width: 400px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px #808080;
+}
+
+.review-ttl {
+    height: 50px;
+    text-align: left;
+    padding-left: 20px;
+    border-radius: 5px 5px 0px 0px;
+    background: blue;
+    align-items: center;
+}
+
+h2{
+    padding: 10px;
+    color: white;
+    font-size: 22px;
+}
+
+.review-form{
+    padding: 20px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.form-group{
+    margin: 0 auto;
+    width: 70%;
+    margin-bottom: 20px;
+}
+
+.star-rating{
+    direction: rtl;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 2rem;
+}
+
+.star-rating input[type="radio"]{
+    display: none;
+}
+
+.star-rating label{
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+textarea{
+    width: 100%;
+}
+
+.star-rating input[type="radio"]:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label{
+    color: #ffc107;
+}
+
+.btn{
+    display: flex;
+    justify-content: center;
+}
+
+button{
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+}

@@ -6,6 +6,7 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ShopController;
 use App\Models\Reservation;
 use PgSql\Result;
@@ -42,4 +43,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/reservations/{reservation}/changed', function (Reservation $reservation) {
         return view('change_complete', compact('reservation'));
     })->name('reservation.changed');
+    Route::get('/reviews/{reservation}/create', [ReviewController::class, 'create'])->name('reviews.create');
+    Route::post('/reviews/{reservation}', [ReviewController::class, 'store'])->name('reviews.store');
 });
