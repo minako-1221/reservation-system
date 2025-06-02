@@ -4,11 +4,9 @@
 
 ![Home Screen](./images/home_screen.png)
 
-
 ## 概要説明
 
 外部の飲食店予約サービスは手数料を取られるので自社で予約サービスを持ちたい
-
 
 ## 環境構築
 
@@ -70,7 +68,6 @@ php artisan key:generate
 php artisan migrate
 ```
 
-
 ## 使用技術（実行環境）
 
 - PHP:8.3.13
@@ -79,17 +76,14 @@ php artisan migrate
 - MySQL:8.0.26
 - Nginx:1.21.1
 
-
 ## ER 図
 
 ![ER Diagram](./images/Rese.drawio.png)
-
 
 ## URL
 
 - 開発環境：http://localhost/
 - phpMyAdmin:http://localhost:8080/
-
 
 ## 使用方法
 
@@ -101,6 +95,8 @@ php artisan migrate
 http://localhost/register
 ```
 
+![Register Screen](./images/register_screen.png)
+
 2. 必要な情報（名前、メールアドレス、パスワード）を入力する
 3. 会員登録ボタンを押す
 4. 登録が完了するとサンクスページが表示される
@@ -109,8 +105,9 @@ http://localhost/register
 http://localhost/thanks
 ```
 
-5. サンクスページのログインするボタンを押すとログイン画面に遷移する
+![Thanks Screen](./images/thanks_screen.png)
 
+5. サンクスページのログインするボタンを押すとログイン画面に遷移する
 
 ### ログイン
 
@@ -120,12 +117,21 @@ http://localhost/thanks
 http://localhost/login
 ```
 
+![Login Screen](./images/login_screen.png)
+
 2. 登録したメールアドレスとパスワードを入力する
 3. ログインボタンを押す
 4. ログインに成功するとホーム画面にリダイレクトされる
 
-
 ### ホーム画面
+
+1. ホーム画面にアクセスする、またはログイン後に表示される
+
+```bash
+http://localhost/
+```
+
+![Home Screen](./images/home_screen.png)
 
 **店舗一覧表示**
 
@@ -142,8 +148,15 @@ http://localhost/login
 2. ハートボタンをクリックすると色がピンクに替わり、お気に入り追加
 3. 再度クリックするとグレーに戻り、お気に入り削除
 
-
 ### 店舗詳細ページ
+
+1. 店舗一覧の「詳しくみる」ボタンをクリックして、店舗詳細画面にアクセスする
+
+```bash
+http://localhost/detail/{shop_id}
+```
+
+![Detail Screen](./images/detail_screen.png)
 
 **店舗詳細表示**
 
@@ -159,27 +172,86 @@ http://localhost/login
 http://localhost/done
 ```
 
+![Done Screen](./images/done_screen.png)
+
 4. 戻るボタンを押すと店舗詳細ページに遷移され、予約リストが追加される
 
+![Detail Screen2](./images/detail_screen2.png)
 
 ### マイページ
 
-**予約リスト**
+1. ナビゲーションメニューの「Mypage」をクリックで、マイページが表示される
 
-1. 左側にログインユーザーと紐づく有効な予約リストを表示
-2. リスト右上の×印クリックで予約の削除
+```bash
+http://localhost/mypage
+```
 
-**お気に入りリスト**
+![Mypage Screen](./images/mypage_screen.png)
 
-1. 右側にログインユーザーと紐づくお気に入り店舗リストを表示
+**予約状況**
+
+1. 画面左側に表示
+2. ログインユーザーに紐づく有効な予約が表示される
+3. タイトル右側の「過去の予約」ボタンをクリックすると、過去の予約が表示される
+
+**予約削除機能**
+
+1. リスト右上の × 印クリックで予約の削除確認画面が表示される
+2. 「はい」をクリックすると予約が削除される
+
+![Delete Screen](./images/delete_screen.png)
+
+**予約変更機能**
+
+1. リスト右下の「変更」ボタンをクリックすると、予約変更フォームが表示される
+
+```bash
+http://localhost/reservations/{id}/change
+```
+
+![Change Screen](./images/change_screen.png)
+
+2. 変更内容を入力し、「予約を変更する」ボタンをクリックすると予約変更完了画面が表示される
+
+```bash
+http://localhost/reservations/{id}/change
+```
+
+![Change_complete Screen](./images/change_complete_screen.png)
+
+3. 「戻る」ボタンをクリックするとマイページにリダイレクトされる
+
+**レビュー機能**
+
+1. 「過去の予約」をクリックして過去の予約を表示
+
+![Mypage_past Screen](./images/mypage_past_screen.png)
+
+2. 過去の予約リスト右下、「レビュー投稿」ボタンをクリックするとレビュー投稿画面が表示される
+
+```bash
+http://localhost/reviews/{reservation}/create
+```
+
+![Change_complete Screen](./images/review_screen.png)
+
+3. 星の数を１〜５で選択、コメントを入力して「レビューを投稿する」ボタンをクリック
+
+![Change_complete2 Screen](./images/review_screen2.png)
+
+4. レビュー投稿済みの予約リストは、レビュー内容が追加され、「レビューを投稿する」ボタンが「投稿済み」に変更になる
+
+![Mypage_past2 Screen](./images/mypage_past_screen2.png)
+
+**お気に入り店舗**
+
+1. 画面右側にログインユーザーと紐づくお気に入り店舗のリストを表示
 2. ハートボタンをクリックするとお気に入り登録解除
-
 
 ### ログアウト
 
 1. ナビゲーションメニューの「logout」をクリックする
 2. ログアウト後はログイン画面にリダイレクトされる
-
 
 ### 注意事項
 
