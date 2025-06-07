@@ -42,6 +42,8 @@ class HomeController extends Controller
 
         $shops = $shops->get();
 
-        return view('index', compact('areas','genres','shops'));
+        $favoriteShops = app(FavoriteController::class)->getUserFavorites();
+
+        return view('index', compact('areas','genres','shops','favoriteShops'));
     }
 }

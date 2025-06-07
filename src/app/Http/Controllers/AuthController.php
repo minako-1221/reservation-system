@@ -50,9 +50,9 @@ class AuthController extends Controller
         }
     }
 
-    public function getLogout()
+    public function logout()
     {
         Auth::logout();
-        return redirect('auth.login');
+        return redirect()->route('login');
     }
 }
