@@ -97,7 +97,7 @@
                         <button class="reserve-btn" type="button" data-auth="false">予約する</button>
                     @endauth
                 </div>
-                <div id="loginModal" class="login-modal" style="display:none">
+                <div id="loginModal" class="login-modal">
                     <div class="modal-content">
                         <div class="modal-header">
                             <i class="fa fa-times-circle cancel-icon"></i>

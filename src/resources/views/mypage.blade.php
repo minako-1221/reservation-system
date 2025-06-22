@@ -105,7 +105,7 @@
                 <p>予約はありません</p>
             @endif
         </div>
-        <div id="cancelModal" class="cancel-modal" style="display:none">
+        <div id="cancelModal" class="cancel-modal">
             <div class="modal-content">
                 <div class="modal-header">
                     <i class="fa fa-times-circle modal-cancel-icon"></i>

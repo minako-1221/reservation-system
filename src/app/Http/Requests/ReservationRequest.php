@@ -24,14 +24,14 @@ class ReservationRequest extends FormRequest
      */
     public function rules()
     {
-        $today = Carbon::today()->format('Y/m/d');
+        $tomorrow = Carbon::tomorrow()->format('Y/m/d');
         return [
             'reservation_date'=>[
                 'required',
                 'date_format:Y/m/d',
-                function ($attribute, $value, $fail) use ($today) {
-                    if ($value < $today) {
-                        $fail('予約日は今日以降の日付を選択してください。');
+                function ($attribute, $value, $fail) use ($tomorrow) {
+                    if ($value < $tomorrow) {
+                        $fail('予約日は明日以降の日付を選択してください。');
                     }
                 },
             ],
