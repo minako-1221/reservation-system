@@ -78,7 +78,7 @@ php artisan migrate
 
 ## ER 図
 
-![ER Diagram](./images/Rese.drawio.png)
+![ER Diagram](./images/Rese.png)
 
 ## URL
 
@@ -91,6 +91,7 @@ php artisan migrate
 
 1. ハンバーガーアイコンとシステム名が表示される
 2. ハンバーガーアイコンをクリックするとメニューが表示される
+
 - 未ログイン状態では「Home、Registration、Login」
 
 ![Guest Screen](./images/guest_screen.png)
@@ -98,7 +99,6 @@ php artisan migrate
 - ログイン状態では「Home、Logout、Mypage」
 
 ![Auth Screen](./images/auth_screen.png)
-
 
 ### 会員登録
 
@@ -122,7 +122,6 @@ http://localhost/thanks
 
 5. サンクスページの「ログインする」ボタンを押すとログイン画面にリダイレクトされる
 
-
 ### ログイン
 
 1. ログイン画面にアクセスする
@@ -136,7 +135,6 @@ http://localhost/login
 2. 登録したメールアドレスとパスワードを入力する
 3. 「ログイン」ボタンを押す
 4. ログインに成功するとホーム画面にリダイレクトされる
-
 
 ### ホーム画面
 
@@ -159,10 +157,9 @@ http://localhost/
 
 **お気に入り機能**
 
-1. カード右下にグレーの♡ボタンを配置
+1. カード右下にグレーの ♡ ボタンを配置
 2. 「♡」ボタンを押すと色がピンクに替わり、お気に入り追加
 3. 再度押すとグレーに戻り、お気に入り削除
-
 
 ### 店舗詳細ページ
 
@@ -193,7 +190,6 @@ http://localhost/done
 4. 「戻る」ボタンを押すと店舗詳細ページにリダイレクトされ、予約フォーム内に予約リストが追加される
 
 ![Detail Screen2](./images/detail_screen2.png)
-
 
 ### マイページ
 
@@ -265,12 +261,10 @@ http://localhost/reviews/{reservation}/create
 1. 画面右側にログインユーザーと紐づくお気に入り店舗のリストを表示
 2. 「♡」ボタンを押すとお気に入り登録解除
 
-
 ### ログアウト
 
 1. メニューから「logout」を押す
 2. ログアウト後はログイン画面にリダイレクトされる
-
 
 ### 注意事項
 

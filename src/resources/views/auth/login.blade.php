@@ -6,7 +6,7 @@
 
 @section('content')
 @if(session('failed'))
-<div class="flash-message">
+<div class="flash-message error">
     {{session('failed')}}
 </div>
 @endif
