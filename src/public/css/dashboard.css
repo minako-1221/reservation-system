@@ -1,0 +1,53 @@
+.container{
+    width: 70%;
+    margin:0 auto;
+}
+
+.shop-ttl h2{
+    font-size: 24px;
+}
+
+.reservation-list{
+    margin-top: 20px;
+}
+
+.list-ttl{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list-ttl h3{
+    font-size: 20px;
+}
+
+.list-ttl a{
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 5px;
+    background-color: #0000ff;
+    color: white;
+    text-align: center;
+    display: inline-block;
+}
+
+.list-table .table{
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 5px;
+}
+
+.list-table .table th,
+.list-table .table td{
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+.list-table .table th{
+    background-color: #0000ff;
+    color: white;
+}

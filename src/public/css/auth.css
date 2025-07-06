@@ -1,12 +1,20 @@
 .flash-message{
-    background-color: #ffaaaa;
-    color: red;
     height: 60px;
     display: flex;
     align-items: center;
     padding-left: 50px;
     font-size: 16px;
     font-weight: bold;
+}
+
+.flash-message.success{
+    background-color: #bbffae;
+    color: black;
+}
+
+.flash-message.error{
+    background-color: #ffaaaa;
+    color: red;
 }
 
 .auth__content {
@@ -64,9 +72,22 @@ h2 {
     content: "🔒";
 }
 
+.shop-icon::before{
+    content:"🏠"
+}
+
 .form-group input {
     border: none;
     border-bottom: 1px solid #808080;
+    outline: none;
+    font-size: 16px;
+    flex: 1;
+}
+
+.form-group select{
+    border: solid 1px #808080;
+    border-radius: 5px;
+    width: 50%;
     outline: none;
     font-size: 16px;
     flex: 1;

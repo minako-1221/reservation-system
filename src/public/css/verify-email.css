@@ -1,0 +1,19 @@
+.verify-container {
+    width: 80%;
+    margin: 50px;
+}
+
+.success-message {
+    color: green;
+    margin: 15px 0;
+}
+
+.resend-button {
+    padding: 5px;
+    margin-top: 10px;
+    background-color: #0000ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
